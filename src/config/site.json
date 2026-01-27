@@ -1,0 +1,52 @@
+{
+  "site": {
+    "title": "Modern Blog",
+    "description": "A modern personal blog website",
+    "url": "https://i.zhangqingdong.cn",
+    "author": "Gerrad Zhang",
+    "email": "gerrad.zhang@hotmail.com",
+    "logo": "/logo.svg",
+    "homeTitle": "Modern Personal Blog",
+    "homeSubtitle": "Welcome to my personal space on the web. I write about technology, programming, design, and occasionally share personal thoughts and experiences.",
+    "blogSubtitle": "Thoughts, ideas, and knowledge on technology, programming, and design.",
+    "projectSubtitle": "A showcase of my personal projects and open source contributions.",
+    "brandTitle": "Gerrad's Blog"
+  },
+  "giscus": {
+    "enabled": true,
+    "repo": "copyboy/whoami_blog_comment",
+    "repoId": "R_kgDOOl9Jtw",
+    "category": "General",
+    "categoryId": "DIC_kwDOOl9Jt84Cp3pA",
+    "mapping": "pathname",
+    "strict": "0",
+    "theme": "preferred_color_scheme",
+    "reactionsEnabled": true,
+    "emitMetadata": false,
+    "inputPosition": "top",
+    "lang": "en",
+    "loading": "lazy"
+  },
+  "seo": {
+    "openGraph": {
+      "twitterCreator": "@yourusername",
+      "defaultImageWidth": 1200,
+      "defaultImageHeight": 630
+    },
+    "analytics": {
+      "googleAnalyticsId": "",
+      "baiduAnalyticsId": ""
+    }
+  },
+  "social": {
+    "github": "https://github.com/copyboy",
+    "linkedin": "https://www.linkedin.com/in/gerrad-zhang-452a15216/"
+  },
+  "features": {
+    "darkMode": true,
+    "tableOfContents": true,
+    "readingTime": true,
+    "search": true,
+    "comments": true
+  }
+} 
