@@ -1,0 +1,161 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import Icon from "./Icon.astro";
+import { getSiteConfig, getSocialConfig } from "@utils/config";
+import { getLink } from "@utils/paths";
+
+// 1. IMPORTAMOS EL COMPONENTE DE IMAGEN Y EL ARCHIVO
+import { Image } from "astro:assets";
+// IMPORTANTE: Verifica si tu archivo es .png, .jpg, .svg o .webp y ajusta la extensión aquí abajo:
+import logoAcislab from "../assets/logo_ACISLAB.png";
+
+const { class: className } = Astro.props;
+const siteConfig = getSiteConfig();
+const socialConfig = getSocialConfig();
+const pathname = Astro.url.pathname;
+
+function isActive(path: string): boolean {
+  if (path === "/") {
+    return pathname === path || pathname === getLink("/");
+  }
+  return pathname.startsWith(path) || pathname.startsWith(getLink(path));
+}
+
+// Clases base para los enlaces
+const linkClass =
+  "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors";
+const activeClass =
+  "bg-indigo-50 text-indigo-700 dark:bg-indigo-500/10 dark:text-indigo-400";
+const inactiveClass =
+  "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100";
+---
+
+<nav
+  class:list={[
+    "w-full bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between",
+    className,
+  ]}
+>
+  {/* 1. IZQUIERDA: LOGO IMAGEN (Modificado) */}
+  <div class="flex-shrink-0">
+    <a
+      href={getLink("/")}
+      class="flex items-center hover:opacity-80 transition-opacity"
+    >
+      {
+        /* Ajustamos la altura (h-10 es aprox 40px) y dejamos el ancho automático */
+      }
+      <Image
+        src={logoAcislab}
+        alt="ACISLAB Logo"
+        class="h-10 w-auto object-contain"
+        loading="eager"
+      />
+    </a>
+  </div>
+
+  {/* 2. CENTRO: Enlaces de Navegación */}
+  <div class="hidden md:flex items-center gap-1">
+    <a
+      href={getLink("/")}
+      class={`${linkClass} ${isActive("/") ? activeClass : inactiveClass}`}
+    >
+      <Icon name="home" class="w-4 h-4" />
+      <span>Home</span>
+    </a>
+
+    <a
+      href={getLink("/blog")}
+      class={`${linkClass} ${isActive("/blog") ? activeClass : inactiveClass}`}
+    >
+      <Icon name="file-text" class="w-4 h-4" />
+      <span>Theses and Papers</span>
+    </a>
+
+    {
+      /* Contenedor del Dropdown: "relative" para posicionar el menú y "group" para detectar el hover */
+    }
+    <div class="relative group">
+      {/* Botón Principal (Trigger) */}
+      <a
+        href={getLink("/projects")}
+        class={`${linkClass} ${isActive("/projects") ? activeClass : inactiveClass} inline-flex items-center gap-1`}
+      >
+        <Icon name="box" class="w-4 h-4" />
+        <span>Our research</span>
+        {
+          /* Flecha pequeña que gira al hacer hover (SVG inline para no depender de iconos externos) */
+        }
+        <svg
+          class="w-3 h-3 text-slate-400 transition-transform group-hover:rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path></svg
+        >
+      </a>
+
+      {/* Menú Desplegable (Dropdown) */}
+      {/* Se muestra solo al hacer hover sobre el grupo padre */}
+      <div
+        class="absolute left-0 top-full pt-2 w-64 hidden group-hover:block z-50"
+      >
+        <div
+          class="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl overflow-hidden"
+        >
+          <a
+            href={getLink("/projects/healthcare")}
+            class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+          >
+            Healthcare-Centered Systems
+          </a>
+
+          <a
+            href={getLink("/projects/affective-computing")}
+            class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors border-t border-slate-100 dark:border-slate-700"
+          >
+            Affective Computing and Intelligent Systems
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a
+      href={getLink("/about")}
+      class={`${linkClass} ${isActive("/about") ? activeClass : inactiveClass}`}
+    >
+      <Icon name="user" class="w-4 h-4" />
+      <span>People</span>
+    </a>
+  </div>
+
+  {/* 3. DERECHA: Redes Sociales y Theme Toggle */}
+  <div class="flex items-center gap-3">
+    <div
+      class="hidden sm:flex items-center gap-1 border-r border-slate-200 dark:border-slate-700 pr-3 mr-1"
+    >
+      <a
+        href={socialConfig.github}
+        target="_blank"
+        class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400"
+        aria-label="GitHub"
+      >
+        <Icon name="github" class="w-5 h-5" />
+      </a>
+      <a
+        href={socialConfig.linkedin}
+        target="_blank"
+        class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400"
+        aria-label="LinkedIn"
+      >
+        <Icon name="linkedin" class="w-5 h-5" />
+      </a>
+    </div>
+
+    <ThemeToggle />
+  </div>
+</nav>

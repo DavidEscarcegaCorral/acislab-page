@@ -1,0 +1,86 @@
+---
+title: "CSS Flexbox Layout Guide"
+description: "Master the flexible box layout model to create responsive, dynamic layouts with CSS Flexbox."
+pubDate: 2023-06-25
+heroImage: "https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
+tags: ["CSS", "Flexbox", "Web Development", "Frontend"]
+categories: ["design"]
+subject: "CSS"
+location: "Wuhan, China"
+---
+
+## Introduction to Flexbox
+
+CSS Flexbox (Flexible Box Module) is a one-dimensional layout method designed for laying out items in rows or columns. It makes it easy to design flexible responsive layout structures without using floats or positioning.
+
+## Basic Concepts
+
+The Flexbox model consists of:
+
+- **Flex Container**: The parent element with `display: flex` applied
+- **Flex Items**: The children elements of the flex container
+
+## Creating a Flex Container
+
+To create a flex container, you simply set the display property:
+
+```css
+.container {
+  display: flex; /* or display: inline-flex */
+}
+```
+
+## Flex Container Properties
+
+Here are some of the most useful properties for the flex container:
+
+- **flex-direction**: Sets the direction of the flex items (row, row-reverse, column, column-reverse)
+- **flex-wrap**: Controls whether items wrap onto multiple lines (nowrap, wrap, wrap-reverse)
+- **justify-content**: Aligns items along the main axis (flex-start, flex-end, center, space-between, space-around)
+- **align-items**: Aligns items along the cross axis (flex-start, flex-end, center, stretch, baseline)
+- **align-content**: Distributes extra space on the cross-axis (similar values to justify-content)
+
+## Flex Item Properties
+
+Individual flex items can have their own properties:
+
+- **flex-grow**: Determines how much an item can grow relative to other items
+- **flex-shrink**: Determines how much an item will shrink relative to others
+- **flex-basis**: Sets the initial main size of an item
+- **flex**: Shorthand for flex-grow, flex-shrink, and flex-basis
+- **align-self**: Overrides the align-items value for specific items
+
+## Practical Example
+
+Here's a simple example of a responsive navigation menu using Flexbox:
+
+```css
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+  }
+}
+```
+
+## Conclusion
+
+Flexbox has revolutionized how we create layouts in CSS. It's particularly useful for:
+
+- Navigation bars
+- Card layouts
+- Centering elements vertically and horizontally
+- Creating equal-height columns
+- Building responsive designs with minimal media queries
+

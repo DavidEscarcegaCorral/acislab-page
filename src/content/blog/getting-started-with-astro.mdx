@@ -1,0 +1,93 @@
+---
+title: "Getting Started with Astro"
+description: "Learn how to build static sites with Astro, the all-in-one web framework designed for speed."
+pubDate: 2023-05-15
+updatedDate: 2023-05-20
+heroImage: "https://astro.build/assets/blog/astro-3/cover.jpeg"
+tags: ["Astro", "Web Development"]
+categories: ["programming"]
+subject: "Framework Tutorials"
+location: "Wuhan, China"
+---
+
+## Introduction
+
+Astro is a modern static site builder that delivers lightning-fast performance with a developer-friendly experience. In this guide, we'll explore how to get started with Astro and build your first website.
+
+## What is Astro?
+
+Astro is an all-in-one web framework designed for speed. It allows you to build fast websites with any UI framework of your choice, while delivering zero JavaScript by default. Astro leverages the power of server-side rendering to generate static HTML, resulting in extremely fast loading times.
+
+### Key Features
+
+- **Zero JavaScript by default**: Astro sites work without JavaScript and then can enhance with JavaScript
+- **UI-agnostic**: Use React, Preact, Svelte, Vue, Solid, and others
+- **Server-first**: Move expensive hydration off the main thread
+- **Edge-ready**: Deploy anywhere, including global edge functions
+- **Customizable**: Tailwind, MDX, and 100+ integrations
+
+## Getting Started
+
+Let's dive into setting up your first Astro project.
+
+### Installation
+
+You can create a new Astro project using the following command:
+
+```bash
+npm create astro@latest
+```
+
+This command will walk you through setting up your project with various template options.
+
+### Project Structure
+
+After installation, you'll have a project structure that looks something like this:
+
+```
+/ 
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+- `public/`: Static assets that will be copied to the build folder
+- `src/components/`: Reusable UI components
+- `src/layouts/`: Layout components that wrap pages
+- `src/pages/`: Each file becomes a page on your site
+
+## Building Your First Page
+
+In Astro, each page is an Astro component in the `src/pages/` directory. Here's a simple example:
+
+```astro
+location: "Wuhan, China"
+---
+// src/pages/index.astro
+location: "Wuhan, China"
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Astro Website</title>
+  </head>
+  <body>
+    <h1>Welcome to my website!</h1>
+  </body>
+</html>
+```
+
+The code between the `---` fences is the "frontmatter" where you can import components, fetch data, and write JavaScript that executes at build time.
+
+## Conclusion
+
+This is just the beginning of what you can do with Astro. As you continue learning, you'll discover how to use components from other frameworks, fetch data from APIs, optimize images, and much more.
+
