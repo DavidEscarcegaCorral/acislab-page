@@ -6,11 +6,11 @@
     "author": "Gerrad Zhang",
     "email": "gerrad.zhang@hotmail.com",
     "logo": "/logo.svg",
-    "homeTitle": "Modern Personal Blog",
-    "homeSubtitle": "Welcome to my personal space on the web. I write about technology, programming, design, and occasionally share personal thoughts and experiences.",
+    "homeTitle": "Healthcare-Centered Systems, Affective Computing and Intelligent Systems",
+    "homeSubtitle": "",
     "blogSubtitle": "Thoughts, ideas, and knowledge on technology, programming, and design.",
     "projectSubtitle": "A showcase of my personal projects and open source contributions.",
-    "brandTitle": "Gerrad's Blog"
+    "brandTitle": "ACISLAB"
   },
   "giscus": {
     "enabled": true,
