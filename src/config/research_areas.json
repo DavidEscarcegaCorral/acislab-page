@@ -1,0 +1,18 @@
+{
+  "areas": [
+    {
+      "id": "healthcare",
+      "title": "Healthcare-Centered Systems",
+      "description": "Design and application of intelligent systems to support healthcare processes, caregivers, and patients, with a focus on real-world impact and social well-being. ",
+      "icon": "box",
+      "link": "/projects/healthcare"
+    },
+    {
+      "id": "affective",
+      "title": "Affective Computing and Intelligent Systems",
+      "description": "We explore the intersection between human emotion and intelligent systems.",
+      "icon": "user",
+      "link": "/projects/affective-computing"
+    }
+  ]
+}

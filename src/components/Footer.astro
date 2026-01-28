@@ -1,0 +1,106 @@
+---
+// src/components/Footer.astro
+import Icon from "./Icon.astro";
+import { getSiteConfig, getSocialConfig } from "@utils/config";
+import { getLink } from "@utils/paths";
+
+const siteConfig = getSiteConfig();
+const socialConfig = getSocialConfig();
+---
+
+<footer class="bg-slate-950 text-slate-400 pt-16 pb-8 mt-20 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="space-y-4">
+            <img src="src/assets/logo_ACISLAB.png" alt="ACISLAB" class="h-8" />
+            <p class="text-sm leading-relaxed">
+                Advanced research in human-centered AI, affective computing, and
+                healthcare systems.
+            </p>
+            <div class="flex gap-4 pt-2">
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-white font-semibold mb-4 text-lg">Explore</h3>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a
+                        href={getLink("/")}
+                        class="hover:text-indigo-400 transition-colors"
+                        >Home</a>
+                </li>
+                <li>
+                    <a
+                        href={getLink("/blog")}
+                        class="hover:text-indigo-400 transition-colors"
+                        >Theses and papers</a>
+                </li>
+                <li>
+                    <a
+                        href={getLink("/projects")}
+                        class="hover:text-indigo-400 transition-colors"
+                        >Research</a>
+                </li>
+                <li>
+                    <a
+                        href={getLink("/about")}
+                        class="hover:text-indigo-400 transition-colors"
+                        >Members</a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-white font-semibold mb-4 text-lg">Contact</h3>
+            <ul class="space-y-3 text-sm">
+                <li class="flex items-center gap-2">
+                    <Icon name="mail" class="w-4 h-4" />
+                    <span>{siteConfig.email}</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <Icon name="map-pin" class="w-4 h-4 mt-1" />
+                    <span
+                        >Instituto Tecnológico de Sonora (ITSON), Cd. Obregón,
+                        México.</span
+                    >
+                </li>
+                <li class="flex items-start gap-2">
+                    <Icon name="phone" class="w-4 h-4 mt-1" />
+                    <span
+                        > (644)4109000 Ext. 1525</span
+                    >
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-white font-semibold mb-4 text-lg">Relations</h3>
+            <ul class="space-y-2 text-sm">
+                <li>
+                    <a
+                        href="https://www.itson.mx"
+                        target="_blank"
+                        class="hover:text-indigo-400 transition-colors"
+                        >ITSON Oficial</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-indigo-400 transition-colors"
+                        >Convocatorias</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-indigo-400 transition-colors"
+                        >Colaboradores Externos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div
+        class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-slate-800 text-center text-xs text-slate-500"
+    >
+        <p>
+            © {new Date().getFullYear()} ACISLAB - {siteConfig.title}. Todos
+            los derechos reservados.
+        </p>
+    </div>
+</footer>

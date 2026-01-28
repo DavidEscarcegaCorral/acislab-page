@@ -1,4 +1,6 @@
 ---
+import Footer from '@components/Footer.astro';
+import Navigation from '@components/Navigation.astro';
 import { SEO } from 'astro-seo';
 import ThemeScript from '@components/ThemeScript.astro';
 import DeployDebug from '@components/DeployDebug.astro';
@@ -83,8 +85,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url);
 
     <slot name="head" />
   </head>
-  <body class="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors duration-300">
-    <slot />
-    <DeployDebug />
+  <body class="min-h-screen flex flex-col bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors duration-300">
+    <Navigation /> <main class="flex-grow">
+      <slot /> </main>
+
+    <Footer /> <DeployDebug />
   </body>
 </html>
