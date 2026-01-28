@@ -36,22 +36,5 @@ const isSearchEnabled = isFeatureEnabled('search');
         <RecentPosts />
       </div>
     )}
-    
-    <!-- Tag Cloud -->
-    <div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-lg font-semibold">Top Tags(12)</h3>
-        <a 
-          href={getLink('/tags')} 
-          class="text-xs text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 font-medium transition-colors flex items-center"
-        >
-          View all
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </div>
-      <TagCloud />
-    </div>
   </div>
 </aside>
