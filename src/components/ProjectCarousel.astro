@@ -1,0 +1,142 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="relative group my-8" data-carousel-wrapper>
+  {/* Botón Izquierdo*/}
+  <button 
+    class="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-slate-800 shadow-xl text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none hidden md:flex items-center justify-center border border-slate-200 dark:border-slate-700 transition-all opacity-0 group-hover:opacity-100 transform hover:scale-110"
+    aria-label="Scroll left"
+    data-carousel-prev
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  {/* Contenedor Scrollable */}
+  <div 
+    class="flex overflow-x-auto snap-x snap-mandatory gap-6 py-4 px-12 md:px-16 scroll-smooth no-scrollbar"
+    data-carousel-container
+  >
+    {projects.map((project) => (
+      <div class="snap-center shrink-0 w-[80vw] sm:w-[280px] flex-none h-full">
+        <ProjectCard project={project} />
+      </div>
+    ))}
+  </div>
+
+  {/* Botón Derecho*/}
+  <button 
+    class="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-slate-800 shadow-xl text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none hidden md:flex items-center justify-center border border-slate-200 dark:border-slate-700 transition-all opacity-0 group-hover:opacity-100 transform hover:scale-110"
+    aria-label="Scroll right"
+    data-carousel-next
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+  }
+</style>
+
+<script>
+  function initCarousels() {
+    document.querySelectorAll('[data-carousel-wrapper]').forEach((wrapper) => {
+      const container = wrapper.querySelector('[data-carousel-container]');
+      const prevBtn = wrapper.querySelector('[data-carousel-prev]');
+      const nextBtn = wrapper.querySelector('[data-carousel-next]');
+
+      if (!container || !prevBtn || !nextBtn) return;
+
+      // Variable para guardar el intervalo del auto-play
+      let autoPlayInterval;
+      const AUTO_PLAY_DELAY = 1500;
+
+      const getScrollAmount = () => {
+        const item = container.firstElementChild;
+        if (!item) return 304;
+        const style = window.getComputedStyle(container);
+        const gap = parseFloat(style.gap) || 24;
+        return item.clientWidth + gap;
+      };
+
+      // Función para mover al siguiente (usada por el botón y el auto-play)
+      const moveNext = () => {
+        const scrollAmount = getScrollAmount();
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        
+        // Si llegamos al final, volvemos al principio
+        if (container.scrollLeft >= maxScroll - 20) {
+            container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+      };
+
+      const movePrev = () => {
+        const scrollAmount = getScrollAmount();
+        if (container.scrollLeft <= 20) {
+           container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
+        } else {
+           container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      };
+
+      // autoplay
+
+      const startAutoPlay = () => {
+        // Limpiamos cualquier intervalo previo para evitar duplicados
+        stopAutoPlay(); 
+        autoPlayInterval = setInterval(moveNext, AUTO_PLAY_DELAY);
+      };
+
+      const stopAutoPlay = () => {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+      };
+
+      // Event Listeners
+
+      prevBtn.addEventListener('click', () => {
+        movePrev();
+        startAutoPlay(); 
+      });
+
+      nextBtn.addEventListener('click', () => {
+        moveNext();
+        startAutoPlay();
+      });
+
+      // Pausar cuando el mouse entra al carrusel
+      wrapper.addEventListener('mouseenter', stopAutoPlay);
+      
+      // Reanudar cuando el mouse sale
+      wrapper.addEventListener('mouseleave', startAutoPlay);
+
+      // Soporte para móviles
+      wrapper.addEventListener('touchstart', stopAutoPlay, { passive: true });
+      wrapper.addEventListener('touchend', startAutoPlay, { passive: true });
+
+      // Iniciar el movimiento automático al cargar
+      startAutoPlay();
+    });
+  }
+
+  initCarousels();
+  document.addEventListener('astro:page-load', initCarousels);
+</script>

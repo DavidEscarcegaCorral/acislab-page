@@ -1,0 +1,73 @@
+---
+import ThreeColumnLayout from '@layouts/ThreeColumnLayout.astro';
+import Container from '@components/Container.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import ProjectCarousel from '@components/ProjectCarousel.astro';
+
+const title = "Affective Computing & Intelligent Systems";
+const description = "Exploring the intersection between human emotion and intelligent systems.";
+
+// Obtenemos todos los proyectos
+const allProjects = await getCollection('projects');
+
+// Filtramos solo los relacionados
+const relatedProjects = allProjects.filter(project => 
+  project.data.tags.includes('Affective Computing') || 
+  project.data.tags.includes('AI') ||
+  project.data.tags.includes('Intelligent Systems')
+);
+---
+
+<ThreeColumnLayout title={title} description={description}>
+  <Container class="py-12">
+    <header class="max-w-4xl mb-12 border-b border-slate-200 dark:border-slate-800 pb-8">
+      <h1 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl mb-6">
+        {title}
+      </h1>
+      <p class="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+        {description}
+      </p>
+    </header>
+    
+    <div class="prose prose-slate dark:prose-invert max-w-none text-lg text-justify mb-16">
+        <p> We explore the intersection between human emotion and intelligent systems. 
+            Our research in Affective Computing focuses on designing technologies that can recognize, 
+            interpret, and simulate emotional states to foster more natural and empathetic interactions 
+            between humans and machines. </p> 
+        <p> We aim to develop computational models that not only understand affective signals such as facial expressions, 
+            voice tone, and physiological responses but also respond in emotionally intelligent ways. 
+            These models are applied in diverse contexts, including: 
+        </p> 
+            <ul> 
+                <li>Supporting caregivers and decision-makers in dementia care environments</li> 
+                <li>Enhancing virtual agents with human-like emotional behavior</li> 
+                <li>Creating immersive 3D simulations for affective interaction testing</li> 
+            </ul> 
+        <p> Our Intelligent Systems research line focuses on the design and development of software platforms, 
+            virtual agents, and AI systems capable of operating autonomously, learning from their environment, 
+            and collaborating effectively with humans in complex tasks. </p> 
+    </div>
+
+    {/* Sección de Proyectos Relacionados */}
+    {relatedProjects.length > 0 && (
+      <section class="border-t border-slate-200 dark:border-slate-800 pt-12">
+        <h2 class="text-3xl font-bold mb-8 text-slate-900 dark:text-slate-100">Related Projects</h2>
+        
+        
+        {relatedProjects.length > 3 ? (
+            <ProjectCarousel projects={relatedProjects} />
+        ) : (
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+                {relatedProjects.map((project) => (
+                    <div class="h-full">
+                        <ProjectCard project={project} />
+                    </div>
+                ))}
+            </div>
+        )}
+        
+      </section>
+    )}
+  </Container>
+</ThreeColumnLayout>

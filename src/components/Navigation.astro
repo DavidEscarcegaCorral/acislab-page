@@ -4,9 +4,7 @@ import Icon from "./Icon.astro";
 import { getSiteConfig, getSocialConfig } from "@utils/config";
 import { getLink } from "@utils/paths";
 
-// 1. IMPORTAMOS EL COMPONENTE DE IMAGEN Y EL ARCHIVO
 import { Image } from "astro:assets";
-// IMPORTANTE: Verifica si tu archivo es .png, .jpg, .svg o .webp y ajusta la extensión aquí abajo:
 import logoAcislab from "../assets/logo_ACISLAB.png";
 
 const { class: className } = Astro.props;
@@ -36,14 +34,14 @@ const inactiveClass =
     className,
   ]}
 >
-  {/* 1. IZQUIERDA: LOGO IMAGEN (Modificado) */}
+  {/* Logo de la pagina */}
   <div class="flex-shrink-0">
     <a
       href={getLink("/")}
       class="flex items-center hover:opacity-80 transition-opacity"
     >
       {
-        /* Ajustamos la altura (h-10 es aprox 40px) y dejamos el ancho automático */
+
       }
       <Image
         src={logoAcislab}
@@ -54,7 +52,7 @@ const inactiveClass =
     </a>
   </div>
 
-  {/* 2. CENTRO: Enlaces de Navegación */}
+  {/* Enlaces de navegacion*/}
   <div class="hidden md:flex items-center gap-1">
     <a
       href={getLink("/")}
@@ -76,15 +74,14 @@ const inactiveClass =
       /* Contenedor del Dropdown: "relative" para posicionar el menú y "group" para detectar el hover */
     }
     <div class="relative group">
-      {/* Botón Principal (Trigger) */}
+      {/* Botón Principal*/}
       <a
-        href={getLink("/projects")}
         class={`${linkClass} ${isActive("/projects") ? activeClass : inactiveClass} inline-flex items-center gap-1`}
       >
         <Icon name="box" class="w-4 h-4" />
         <span>Our research</span>
         {
-          /* Flecha pequeña que gira al hacer hover (SVG inline para no depender de iconos externos) */
+          /* Flecha pequeña que gira al hacer hover*/
         }
         <svg
           class="w-3 h-3 text-slate-400 transition-transform group-hover:rotate-180"
@@ -99,7 +96,7 @@ const inactiveClass =
         >
       </a>
 
-      {/* Menú Desplegable (Dropdown) */}
+      {/* Menú Desplegable */}
       {/* Se muestra solo al hacer hover sobre el grupo padre */}
       <div
         class="absolute left-0 top-full pt-2 w-64 hidden group-hover:block z-50"
@@ -108,14 +105,14 @@ const inactiveClass =
           class="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl overflow-hidden"
         >
           <a
-            href={getLink("/projects/healthcare")}
+            href={getLink("/research/healthcare_centered_systems")}
             class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             Healthcare-Centered Systems
           </a>
 
           <a
-            href={getLink("/projects/affective-computing")}
+            href={getLink("/research/affective_computing")}
             class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors border-t border-slate-100 dark:border-slate-700"
           >
             Affective Computing and Intelligent Systems
