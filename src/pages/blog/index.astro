@@ -26,14 +26,14 @@ const sortedTags = Object.entries(tags)
 // Get the top 5 most popular tags
 const topTags = sortedTags.slice(0, 5);
 
-// Sort posts by date in descending order (newest first)
+// Sort posts by date in descending order
 const sortedPosts = allPosts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 // Pagination
 const postsPerPage = 10;
-const currentPage = 1;
+const currentPage = 1; 
 const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
 const paginatedPosts = sortedPosts.slice(
   (currentPage - 1) * postsPerPage,
@@ -46,7 +46,7 @@ const siteConfig = getSiteConfig();
 
 <ThreeColumnLayout title={formatPageTitle('Blog')}>
   <header class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8">
-    <h1 class="text-4xl font-bold mb-4">Blog</h1>
+    <h1 class="text-4xl font-bold mb-4 text-slate-900 dark:text-white">Blog</h1>
     <p class="text-lg text-slate-600 dark:text-slate-300">
       {siteConfig.blogSubtitle}
     </p>
@@ -54,7 +54,7 @@ const siteConfig = getSiteConfig();
 
   <div class="mb-8">
     <div class="flex justify-between items-center mb-4">
-      <h2 class="text-xl font-semibold">Popular Tags</h2>
+      <h2 class="text-xl font-semibold text-slate-900 dark:text-white">Popular Tags</h2>
       <a href={getLink('/tags')} class="text-sm text-indigo-500 hover:text-indigo-600 flex items-center">
         View all
         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ml-1" viewBox="0 0 20 20" fill="currentColor">
@@ -66,7 +66,7 @@ const siteConfig = getSiteConfig();
       {topTags.map(({ tag, count }) => (
         <a
           href={getLink(`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`)}
-          class="text-md px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full transition-colors shadow-sm"
+          class="text-md px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full transition-colors shadow-sm text-slate-700 dark:text-slate-300"
         >
           {tag}
           <span class="ml-1 text-slate-500 dark:text-slate-400">({count})</span>
@@ -75,7 +75,6 @@ const siteConfig = getSiteConfig();
     </div>
   </div>
 
-  <!-- Divider -->
   <hr class="border-t border-slate-200 dark:border-slate-700 mb-8" />
 
   <div class="divide-y divide-slate-200 dark:divide-slate-700">
@@ -89,6 +88,7 @@ const siteConfig = getSiteConfig();
         author={post.data.author}
         location={post.data.location}
         slug={post.slug}
+        externalUrl={post.data.externalUrl}
       />
     ))}
   </div>
