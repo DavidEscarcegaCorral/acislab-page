@@ -43,7 +43,7 @@ const siteConfig = getSiteConfig();
 <BaseLayout title={`Home | ${siteConfig.title}`}>
     <div class="max-w-7xl mx-auto w-full p-4 pt-8">
         <header
-                class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8 text-center"
+                class="pb-8 border-b border-slate-400 dark:border-slate-600 mb-8 text-center"
         >
             <h1 class="text-4xl font-bold mb-4 text-slate-900 dark:text-white">
                 {siteConfig.homeTitle}
@@ -53,7 +53,7 @@ const siteConfig = getSiteConfig();
             </p>
         </header>
 
-        <section class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-8">
+        <section class="mb-12 border-b border-slate-400 dark:border-slate-600 pb-8">
             <div class="max-w-3xl mx-auto">
                 <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
                     About ACISLAB
@@ -105,7 +105,7 @@ const siteConfig = getSiteConfig();
             </div>
         </section>
 
-        <section class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-12">
+        <section class="mb-12 border-b border-slate-400 dark:border-slate-600 pb-12">
             <div class="flex items-center justify-between mb-2 px-1">
                 <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Projects</h2>
                 <a href="/projects"
@@ -120,78 +120,71 @@ const siteConfig = getSiteConfig();
                     </svg>
                 </a>
             </div>
-
             <ProjectCarousel projects={projectsForCarousel}/>
-
         </section>
 
-        <section
-                class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 mb-8"
-        >
-            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
-                Our Research Vision
-            </h2>
-            <div
-                    class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
-            >
-                <p>
-        <span class="font-semibold text-slate-900 dark:text-white">ACISLAB</span
-        > operates at the intersection of Affective Computing, Intelligent Systems,
-                    Software Engineering, and Human-Computer Interaction.
-                </p>
-                <p>
-                    Unlike purely data-driven or “black-box” AI approaches, our research
-                    emphasizes formal, explainable, and methodologically grounded models of
-                    cognition and emotion.
-                </p>
-                <p>
-                    We develop Computational Models of Emotion, study how emotional
-                    processes influence cognition and decision-making, and design
-                    architectures for cognitive and affective agents capable of interacting
-                    naturally with users.
-                </p>
+        <section>
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+                    Our Research Vision
+                </h2>
+                <div class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify">
+                    <p>
+        <span class="font-semibold text-slate-900 dark:text-white">
+            ACISLAB
+        </span>
+                        operates at the intersection of Affective Computing, Intelligent Systems,
+                        Software Engineering, and Human-Computer Interaction.
+                    </p>
+                    <p>
+                        Unlike purely data-driven or "black-box" AI approaches, our research
+                        emphasizes formal, explainable, and methodologically grounded models of
+                        cognition and emotion.
+                    </p>
+                    <p>
+                        We develop Computational Models of Emotion, study how emotional
+                        processes influence cognition and decision-making, and design
+                        architectures for cognitive and affective agents capable of interacting
+                        naturally with users.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section
-                class="mt-8 mb-12 border-t border-slate-200 dark:border-slate-800 pt-8"
-        >
-            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
-                Culture and Collaboration
-            </h2>
-            <div
-                    class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
-            >
-                <p>
-                    Under the direction of <span
-                        class="font-semibold text-slate-900 dark:text-white"
-                >Dr. Luis-Felipe Rodríguez</span
-                >, the laboratory promotes a culture of close collaboration. We focus on
-                    training the next generation of researchers.
-                </p>
-            </div>
+        <section class="mt-8 mb-12 border-t border-slate-400 dark:border-slate-600 pt-8">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+                    Culture and Collaboration
+                </h2>
+                <div class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify">
+                    <p>
+                        Under the direction of <span
+                            class="font-semibold text-slate-900 dark:text-white"
+                    >Dr. Luis-Felipe Rodríguez</span
+                    >, the laboratory promotes a culture of close collaboration. We focus on
+                        training the next generation of researchers.
+                    </p>
+                </div>
 
-            <div class="mt-8">
-                <a
-                        href="/about"
-                        class="inline-flex items-center gap-2 px-5 py-2 border border-slate-300 dark:border-slate-600 hover:border-sky-500 dark:hover:border-sky-400 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg transition-colors bg-transparent"
-                >
-                    <span>Meet Our Team</span>
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="w-4 h-4"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                    >
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                    </svg
-                    >
-                </a>
+                <div class="mt-8">
+                    <a href="/about"
+                       class="inline-flex items-center gap-2 px-5 py-2 border border-slate-300 dark:border-slate-600 hover:border-sky-500 dark:hover:border-sky-400 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg transition-colors bg-transparent">
+                        <span>Meet Our Team</span>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-4 h-4"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                        >
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
     </div>
