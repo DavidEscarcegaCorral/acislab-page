@@ -3,13 +3,11 @@
     (function() {
         const storedTheme = localStorage.getItem('theme');
 
-        // 1. Si el usuario ya eligió uno antes, lo respetamos
         if (storedTheme === 'dark') {
             document.documentElement.classList.add('dark');
         } else if (storedTheme === 'light') {
             document.documentElement.classList.remove('dark');
         } else {
-            // 2. SI ES LA PRIMERA VEZ: Forzamos LIGHT (aquí está el truco)
             document.documentElement.classList.remove('dark');
             localStorage.setItem('theme', 'light');
         }

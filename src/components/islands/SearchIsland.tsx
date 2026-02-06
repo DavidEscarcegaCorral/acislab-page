@@ -62,7 +62,7 @@ const SearchResultCard = React.memo(({ post, formatDate }: {
       <div className="p-5 flex flex-col flex-grow">
         {/* Title area */}
         <div className="mb-3">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors line-clamp-2">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white hover:text-sky-600 dark:hover:text-sky-400 transition-colors line-clamp-2">
             <a href={getLink(`/blog/${post.slug}`)}>{post.title}</a>
           </h2>
         </div>
@@ -346,7 +346,7 @@ const SearchIsland = ({
             type="text" 
             id="search-input" 
             placeholder="Search articles, tags or categories..." 
-            className="w-full p-4 pr-12 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full p-4 pr-12 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500"
             value={searchQuery}
             onChange={handleSearchInput}
           />
@@ -386,7 +386,7 @@ const SearchIsland = ({
           <p className="text-xl text-slate-600 dark:text-slate-300">No matching articles found.</p>
           <p className="mt-2 text-slate-500 dark:text-slate-400">
             Try different keywords or
-            <button onClick={resetSearch} className="text-indigo-600 dark:text-indigo-400 hover:underline ml-1">
+            <button onClick={resetSearch} className="text-sky-600 dark:text-sky-400 hover:underline ml-1">
               view all articles
             </button>
           </p>

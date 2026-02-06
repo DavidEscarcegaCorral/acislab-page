@@ -1,0 +1,48 @@
+---
+import ThreeColumnLayout from '@layouts/ThreeColumnLayout.astro';
+import { formatPageTitle } from '@utils/config';
+---
+
+<ThreeColumnLayout title={formatPageTitle('Contact')}>
+  <header class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8">
+    <h1 class="text-4xl font-bold mb-4">Contact Us</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-300">
+      Get in touch with us for collaborations, inquiries, or more information.
+    </p>
+  </header>
+
+  <div class="prose dark:prose-invert prose-lg max-w-none space-y-8">
+    <section>
+      <h2>Contact Information</h2>
+      <p>
+        We are available to answer your questions and listen to your collaboration proposals.
+        Feel free to reach out to us through the following channels:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Email</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            For general inquiries and collaboration proposals
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Location</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            Information about our location
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Follow Us on Social Media</h2>
+      <p>
+        You can also connect with us on our social media channels to stay updated on the latest
+        news, research, and updates.
+      </p>
+    </section>
+  </div>
+</ThreeColumnLayout>
+

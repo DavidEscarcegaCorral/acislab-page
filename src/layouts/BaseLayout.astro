@@ -16,21 +16,18 @@ export interface Props {
 
 // Get site configuration
 const siteConfig = getSiteConfig();
-
 const {
   title = siteConfig.title,
   description = siteConfig.description,
   image = '/images/default-social.png',
   article = false
 } = Astro.props;
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Apply theme as early as possible to prevent flash -->
     <ThemeScript />
     
     <meta charset="UTF-8" />
@@ -41,6 +38,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url);
     <link rel="canonical" href={canonicalURL} />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    
     <meta name="author" content={siteConfig.author} />
     <meta name="template-id" content="product-whoami" />
 
@@ -83,9 +81,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url);
     })} />
 
     <slot name="head" />
+ 
   </head>
   <body class="min-h-screen flex flex-col bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors duration-300">
-    <Navigation /> <main class="flex-grow">
-      <slot /> </main>
+    <Navigation /> 
+    
+    <main class="flex-grow">
+      <slot /> 
+    </main>
+    
+    <Footer />
   </body>
 </html>
