@@ -1,0 +1,58 @@
+---
+import ThreeColumnLayout from '@layouts/ThreeColumnLayout.astro';
+import { formatPageTitle } from '@utils/config';
+---
+
+<ThreeColumnLayout title={formatPageTitle('Miembros')}>
+  <header class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8">
+    <h1 class="text-4xl font-bold mb-4">Miembros del Equipo</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-300">
+      Conoce a los investigadores y profesionales que conforman el equipo de ACISLAB.
+    </p>
+  </header>
+
+  <div class="prose dark:prose-invert prose-lg max-w-none space-y-8">
+    <section>
+      <h2>Equipo de Investigación</h2>
+      <p>
+        Nuestro equipo está conformado por investigadores especializados en diversas áreas de la informática y sistemas.
+        Trabajamos colaborativamente en proyectos de investigación e innovación tecnológica.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8 not-prose">
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Miembro 1</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Especialidad</p>
+          <p class="text-slate-600 dark:text-slate-300 text-sm">
+            Información sobre el miembro del equipo
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Miembro 2</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Especialidad</p>
+          <p class="text-slate-600 dark:text-slate-300 text-sm">
+            Información sobre el miembro del equipo
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Miembro 3</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Especialidad</p>
+          <p class="text-slate-600 dark:text-slate-300 text-sm">
+            Información sobre el miembro del equipo
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Colaboradores</h2>
+      <p>
+        Además de nuestro equipo principal, contamos con colaboradores externos que aportan
+        expertise en distintas áreas de investigación y desarrollo.
+      </p>
+    </section>
+  </div>
+</ThreeColumnLayout>
+

@@ -70,6 +70,22 @@ const inactiveClass =
       <span>Theses and Papers</span>
     </a>
 
+    <a
+      href={getLink("/contact")}
+      class={`${linkClass} ${isActive("/contact") ? activeClass : inactiveClass}`}
+    >
+      <Icon name="link" class="w-4 h-4" />
+      <span>Contacto</span>
+    </a>
+
+    <a
+      href={getLink("/members")}
+      class={`${linkClass} ${isActive("/members") ? activeClass : inactiveClass}`}
+    >
+      <Icon name="user" class="w-4 h-4" />
+      <span>Miembros</span>
+    </a>
+
     {
       /* Contenedor del Dropdown: "relative" para posicionar el menú y "group" para detectar el hover */
     }

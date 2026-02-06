@@ -1,0 +1,48 @@
+---
+import ThreeColumnLayout from '@layouts/ThreeColumnLayout.astro';
+import { formatPageTitle } from '@utils/config';
+---
+
+<ThreeColumnLayout title={formatPageTitle('Contacto')}>
+  <header class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8">
+    <h1 class="text-4xl font-bold mb-4">Contacto</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-300">
+      Ponte en contacto con nosotros para colaboraciones, consultas o más información.
+    </p>
+  </header>
+
+  <div class="prose dark:prose-invert prose-lg max-w-none space-y-8">
+    <section>
+      <h2>Información de Contacto</h2>
+      <p>
+        Estamos disponibles para responder tus preguntas y escuchar tus propuestas de colaboración.
+        No dudes en ponerte en contacto con nosotros a través de los siguientes medios:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Email</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            Para consultas generales y colaboraciones
+          </p>
+        </div>
+
+        <div class="p-6 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+          <h3 class="font-semibold text-slate-900 dark:text-white mb-2">Ubicación</h3>
+          <p class="text-slate-600 dark:text-slate-300">
+            Información sobre nuestra ubicación
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Síguenos en Redes Sociales</h2>
+      <p>
+        También puedes conectar con nosotros en nuestras redes sociales para estar al tanto de las últimas
+        noticias, investigaciones y actualizaciones.
+      </p>
+    </section>
+  </div>
+</ThreeColumnLayout>
+
