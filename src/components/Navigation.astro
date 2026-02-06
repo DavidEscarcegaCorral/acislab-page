@@ -1,147 +1,147 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro";
 import Icon from "./Icon.astro";
-import { getSiteConfig, getSocialConfig } from "@utils/config";
-import { getLink } from "@utils/paths";
+import {getSiteConfig, getSocialConfig} from "@utils/config";
+import {getLink} from "@utils/paths";
 
-import { Image } from "astro:assets";
+import {Image} from "astro:assets";
 import logoAcislab from "../assets/logo_ACISLAB.png";
 
-const { class: className } = Astro.props;
+const {class: className} = Astro.props;
 const siteConfig = getSiteConfig();
 const socialConfig = getSocialConfig();
 const pathname = Astro.url.pathname;
 
 function isActive(path: string): boolean {
-  if (path === "/") {
-    return pathname === path || pathname === getLink("/");
-  }
-  return pathname.startsWith(path) || pathname.startsWith(getLink(path));
+    if (path === "/") {
+        return pathname === path || pathname === getLink("/");
+    }
+    return pathname.startsWith(path) || pathname.startsWith(getLink(path));
 }
 
 // Clases base para los enlaces
 const linkClass =
-  "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors";
+    "flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors";
 const activeClass =
-  "bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-400";
+    "bg-sky-50 text-sky-700 dark:bg-sky-500/10 dark:text-sky-400";
 const inactiveClass =
-  "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100";
+    "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100";
 ---
 
 <nav
-  class:list={[
-    "w-full bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between",
-    className,
-  ]}
+        class:list={[
+            "w-full bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-slate-800 px-4 h-16 flex items-center justify-between",
+            className,
+        ]}
 >
-  {/* Logo de la pagina */}
-  <div class="flex-shrink-0">
-    <a
-      href={getLink("/")}
-      class="flex items-center hover:opacity-80 transition-opacity"
-    >
-      {
-
-      }
-      <Image
-        src={logoAcislab}
-        alt="ACISLAB Logo"
-        class="h-10 w-auto object-contain"
-        loading="eager"
-      />
-    </a>
-  </div>
-
-  {/* Enlaces de navegacion*/}
-  <div class="hidden md:flex items-center gap-1">
-    <a
-      href={getLink("/")}
-      class={`${linkClass} ${isActive("/") ? activeClass : inactiveClass}`}
-    >
-      <Icon name="home" class="w-4 h-4" />
-      <span>Home</span>
-    </a>
-
-    <a
-      href={getLink("/blog")}
-      class={`${linkClass} ${isActive("/blog") ? activeClass : inactiveClass}`}
-    >
-      <Icon name="file-text" class="w-4 h-4" />
-      <span>Theses and Papers</span>
-    </a>
-
-    <a
-      href={getLink("/contact")}
-      class={`${linkClass} ${isActive("/contact") ? activeClass : inactiveClass}`}
-    >
-      <Icon name="link" class="w-4 h-4" />
-      <span>Contact</span>
-    </a>
-
-    <a
-      href={getLink("/members")}
-      class={`${linkClass} ${isActive("/members") ? activeClass : inactiveClass}`}
-    >
-      <Icon name="user" class="w-4 h-4" />
-      <span>Members</span>
-    </a>
-
-    {
-      /* Contenedor del Dropdown: "relative" para posicionar el menú y "group" para detectar el hover */
-    }
-    <div class="relative group">
-      {/* Botón Principal*/}
-      <a
-        class={`${linkClass} ${isActive("/projects") ? activeClass : inactiveClass} inline-flex items-center gap-1`}
-      >
-        <Icon name="box" class="w-4 h-4" />
-        <span>Our research</span>
-        {
-          /* Flecha pequeña que gira al hacer hover*/
-        }
-        <svg
-          class="w-3 h-3 text-slate-400 transition-transform group-hover:rotate-180"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          ><path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"></path></svg
+    {/* Logo de la pagina */}
+    <div class="flex-shrink-0">
+        <a
+                href={getLink("/")}
+                class="flex items-center hover:opacity-80 transition-opacity"
         >
-      </a>
+            {
 
-      {/* Menú Desplegable */}
-      {/* Se muestra solo al hacer hover sobre el grupo padre */}
-      <div
-        class="absolute left-0 top-full pt-2 w-64 hidden group-hover:block z-50"
-      >
-        <div
-          class="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl overflow-hidden"
-        >
-          <a
-            href={getLink("/research/healthcare_centered_systems")}
-            class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-900/30 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
-          >
-            Healthcare-Centered Systems
-          </a>
-
-          <a
-            href={getLink("/research/affective_computing")}
-            class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-900/30 hover:text-sky-600 dark:hover:text-sky-400 transition-colors border-t border-slate-100 dark:border-slate-700"
-          >
-            Affective Computing and Intelligent Systems
-          </a>
-        </div>
-      </div>
+            }
+            <Image
+                    src={logoAcislab}
+                    alt="ACISLAB Logo"
+                    class="h-10 w-auto object-contain"
+                    loading="eager"
+            />
+        </a>
     </div>
-  </div>
 
-  {/* 3. DERECHA: Redes Sociales y Theme Toggle */}
-  <div class="flex items-center gap-3">
+    {/* Enlaces de navegacion - Centrados */}
+    <div class="hidden md:flex items-center gap-1 flex-1 justify-center">
+        <a
+                href={getLink("/")}
+                class={`${linkClass} ${isActive("/") ? activeClass : inactiveClass}`}
+        >
+            <Icon name="home" class="w-4 h-4"/>
+            <span>Home</span>
+        </a>
 
+        {
+            /* Contenedor del Dropdown: "relative" para posicionar el menú y "group" para detectar el hover */
+        }
+        <div class="relative group">
+            {/* Botón Principal*/}
+            <a
+                    class={`${linkClass} ${isActive("/projects") ? activeClass : inactiveClass} inline-flex items-center gap-1`}
+            >
+                <Icon name="box" class="w-4 h-4"/>
+                <span>Our research</span>
+                {
+                    /* Flecha pequeña que gira al hacer hover*/
+                }
+                <svg
+                        class="w-3 h-3 text-slate-400 transition-transform group-hover:rotate-180"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                >
+                    <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path>
+                </svg
+                >
+            </a>
 
-    <ThemeToggle />
-  </div>
+            {/* Menú Desplegable */}
+            {/* Se muestra solo al hacer hover sobre el grupo padre */}
+            <div
+                    class="absolute left-0 top-full pt-2 w-64 hidden group-hover:block z-50"
+            >
+                <div
+                        class="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl overflow-hidden"
+                >
+                    <a
+                            href={getLink("/research/healthcare_centered_systems")}
+                            class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-900/30 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+                    >
+                        Healthcare-Centered Systems
+                    </a>
+
+                    <a
+                            href={getLink("/research/affective_computing")}
+                            class="block px-4 py-3 text-sm text-slate-600 dark:text-slate-300 hover:bg-sky-50 dark:hover:bg-sky-900/30 hover:text-sky-600 dark:hover:text-sky-400 transition-colors border-t border-slate-100 dark:border-slate-700"
+                    >
+                        Affective Computing and Intelligent Systems
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <a
+                href={getLink("/blog")}
+                class={`${linkClass} ${isActive("/blog") ? activeClass : inactiveClass}`}
+        >
+            <Icon name="file-text" class="w-4 h-4"/>
+            <span>Theses and Papers</span>
+        </a>
+
+        <a
+                href={getLink("/contact")}
+                class={`${linkClass} ${isActive("/contact") ? activeClass : inactiveClass}`}
+        >
+            <Icon name="link" class="w-4 h-4"/>
+            <span>Contact</span>
+        </a>
+
+        <a
+                href={getLink("/members")}
+                class={`${linkClass} ${isActive("/members") ? activeClass : inactiveClass}`}
+        >
+            <Icon name="user" class="w-4 h-4"/>
+            <span>Members</span>
+        </a>
+    </div>
+
+    {/* 3. DERECHA: Theme Toggle */}
+    <div class="flex items-center gap-3">
+        <ThemeToggle/>
+    </div>
 </nav>

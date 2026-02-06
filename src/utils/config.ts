@@ -3,12 +3,12 @@
  * Convenient for accessing and using configuration items in the application
  */
 
-import originalSiteConfigFromFile from '../config/site.json'; // 重命名导入以避免混淆
+import originalSiteConfigFromFile from '../config/site.json';
 
 // Configuration type definition
-// SiteConfig 现在代表了 site.json 的完整结构
+// SiteConfig
 export interface SiteConfig {
-  site: SiteSubConfig; // 使用下面的 SiteSubConfig
+  site: SiteSubConfig;
   giscus: {
     enabled: boolean;
     repo: string;
@@ -53,11 +53,10 @@ export interface SiteConfig {
   };
 }
 
-// site.json 中 'site' 对象的类型
 export interface SiteSubConfig {
   title: string;
   description: string;
-  url: string; // 这是 site.json 中的原始 URL，可能是占位符或本地开发 URL
+  url: string;
   author: string;
   email: string;
   logo: string;
@@ -68,10 +67,9 @@ export interface SiteSubConfig {
   brandTitle: string;
 }
 
-// getSiteConfig 函数返回的类型，包含了动态的 url 和 base
 export interface DynamicSiteConfig extends SiteSubConfig {
-  base: string; // 新增：动态计算的 base 路径
-  // 'url' 属性将是动态计算的最终部署 URL
+  base: string;
+
 }
 
 
@@ -94,12 +92,9 @@ export function getConfig(): SiteConfig {
  */
 export function getSiteConfig(): DynamicSiteConfig {
   const deployEnv = process.env.DEPLOY_ENV || 'LOCAL';
-  // 从 GitHub Actions 环境变量中获取仓库名称和用户名
-  // 请确保在 GitHub Actions workflow 中设置了这些变量，或者在此处提供默认值
-  const githubRepoName = process.env.GITHUB_REPO_NAME || 'product_whoami'; // <<-- TODO: 替换为你的 GitHub demo 仓库名
-  const githubActor = process.env.GITHUB_ACTOR || 'copyboy'; // <<-- TODO: 替换为你的 GitHub 用户名
+  const githubRepoName = process.env.GITHUB_REPO_NAME || 'product_whoami';
+  const githubActor = process.env.GITHUB_ACTOR || 'copyboy';
 
-  // 从 site.json 中获取基础站点配置
   const baseSiteDetails = { ...originalSiteConfigFromFile.site };
 
   let dynamicUrl: string;
@@ -107,26 +102,23 @@ export function getSiteConfig(): DynamicSiteConfig {
 
   switch (deployEnv) {
     case 'DEMO_GITHUB_PAGES':
-      // 假设 GitHub Pages 部署到 https://<username>.github.io/<repo-name>/
-      // 如果你的 GitHub Pages 使用自定义域名，请相应修改 url 和 base
       dynamicUrl = `https://${githubActor}.github.io`;
       dynamicBase = `/${githubRepoName}`;
       break;
     case 'MAIN_CLOUDFLARE':
-      dynamicUrl = originalSiteConfigFromFile.site.url; // <--- 修改点：直接从 site.json 读取
+      dynamicUrl = originalSiteConfigFromFile.site.url;
       dynamicBase = '/';
       break;
     default: // LOCAL or other environments
-      // 对于本地开发，可以使用 site.json 中的 URL，或 Astro 的默认开发服务器地址
       dynamicUrl = originalSiteConfigFromFile.site.url || 'http://localhost:4321';
       dynamicBase = '/';
       break;
   }
 
   return {
-    ...baseSiteDetails, // 保留 site.json 中的 title, description, author 等
-    url: dynamicUrl,    // 使用动态生成的 URL
-    base: dynamicBase,  // 添加动态生成的 base 路径
+    ...baseSiteDetails,
+    url: dynamicUrl,
+    base: dynamicBase,
   };
 }
 
@@ -181,14 +173,13 @@ export function isFeatureEnabled(featureName: keyof SiteConfig['features']): boo
  * @returns Formatted complete title
  */
 export function formatPageTitle(pageTitle: string): string {
-  // getSiteConfig() 现在返回 DynamicSiteConfig，它包含了原始的 title
   const siteDetails = getSiteConfig();
   return `${pageTitle} | ${siteDetails.title}`;
 }
 
 export default {
-  getConfig, // 返回原始 site.json 内容
-  getSiteConfig, // 返回包含动态 url 和 base 的站点配置
+  getConfig,
+  getSiteConfig,
   getGiscusConfig,
   getSeoConfig,
   getSocialConfig,

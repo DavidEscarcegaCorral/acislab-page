@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import remarkToc from 'remark-toc';
-import { getSiteConfig } from './src/utils/config'; // 确保路径正确
+import { getSiteConfig } from './src/utils/config';
 import icon from 'astro-icon';
 
 const siteConfig = getSiteConfig();
@@ -15,8 +15,8 @@ console.log('Astro Config - Base:', siteConfig.base);
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteConfig.url, // 使用从 config 文件获取的 URL
-  base: siteConfig.base, // <-- 使用从 config 文件获取的 base
+  site: siteConfig.url,
+  base: siteConfig.base,
   integrations: [
     tailwind(),
     mdx({
@@ -32,8 +32,8 @@ export default defineConfig({
       }
     }),
     react(),
-    sitemap(), // sitemap 会自动使用 site 和 base
-    icon() // 添加 icon 集成
+    sitemap(),
+    icon()
   ],
   markdown: {
     syntaxHighlight: 'shiki',
@@ -42,7 +42,7 @@ export default defineConfig({
       wrap: true
     }
   },
-  output: 'static', // 保持 'static'，因为 GitHub Pages 和 Cloudflare Pages 都托管静态文件
+  output: 'static',
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
@@ -58,7 +58,7 @@ export default defineConfig({
     }
   },
   vite: {
-    base: siteConfig.base, // 确保Vite也使用相同的base
+    base: siteConfig.base,
     build: {
       assetsInlineLimit: 4096,
     },
@@ -70,7 +70,6 @@ export default defineConfig({
         overlay: true
       }
     },
-    // 添加定义环境变量，确保客户端代码能访问
     define: {
       'import.meta.env.PUBLIC_BASE_URL': JSON.stringify(siteConfig.base)
     }

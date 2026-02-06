@@ -1,8 +1,8 @@
 ---
 import ProjectCard from "@components/ProjectCard.astro";
-import ThreeColumnLayout from "@layouts/ThreeColumnLayout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
-import { getSiteConfig } from "@utils/config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import {getCollection, type CollectionEntry} from "astro:content";
+import {getSiteConfig} from "@utils/config";
 import AreaCard from "@components/AreaCard.astro";
 import ProjectCarousel from '@components/ProjectCarousel.astro';
 
@@ -12,177 +12,187 @@ import affectiveImg from "../assets/affective.png";
 
 // LÓGICA DE DATOS
 
-const allPosts = await getCollection("blog", ({ data }) => {
-  return import.meta.env.PROD ? !data.draft : true;
+const allPosts = await getCollection("blog", ({data}) => {
+    return import.meta.env.PROD ? !data.draft : true;
 });
 
 const featuredPosts = allPosts
-  .filter((post) => post.data.featured)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+    .filter((post) => post.data.featured)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 3);
 
 if (featuredPosts.length < 3) {
-  const recentPosts = allPosts
-    .filter((post) => !post.data.featured)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(0, 3 - featuredPosts.length);
-  featuredPosts.push(...recentPosts);
+    const recentPosts = allPosts
+        .filter((post) => !post.data.featured)
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+        .slice(0, 3 - featuredPosts.length);
+    featuredPosts.push(...recentPosts);
 }
 
 // Obtenemos todos los proyectos
 const allProjects = await getCollection("projects");
 
 // Ordenamos por fecha
-const projectsForCarousel = allProjects.sort((a, b) => 
-  b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const projectsForCarousel = allProjects.sort((a, b) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const siteConfig = getSiteConfig();
 ---
 
-<ThreeColumnLayout title={`Home | ${siteConfig.title}`}>
-  <header
-    class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8 text-center md:text-center"
-  >
-    <h1 class="text-4xl font-bold mb-4 text-slate-900 dark:text-white">
-      {siteConfig.homeTitle}
-    </h1>
-    <p class="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-      {siteConfig.homeSubtitle}
-    </p>
-  </header>
+<BaseLayout title={`Home | ${siteConfig.title}`}>
+    <div class="max-w-7xl mx-auto w-full p-4 pt-8">
+        <header
+                class="pb-8 border-b border-slate-200 dark:border-slate-800 mb-8 text-center"
+        >
+            <h1 class="text-4xl font-bold mb-4 text-slate-900 dark:text-white">
+                {siteConfig.homeTitle}
+            </h1>
+            <p class="text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
+                {siteConfig.homeSubtitle}
+            </p>
+        </header>
 
-  <section class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-8">
-    <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
-      About ACISLAB
-    </h2>
-    <div
-      class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
-    >
-      <p>
-        <span class="font-semibold text-slate-900 dark:text-white">ACISLAB</span
-        > is a research laboratory based at the Instituto Tecnológico de Sonora (ITSON),
-        Mexico, dedicated to the study and development of human-centered artificial
-        intelligence.
-      </p>
-      <p>
-        Our mission is to design intelligent systems that not only optimize
-        tasks, but are capable of understanding, modeling, and responding to the
-        human cognitive and emotional condition. We believe that the future of
-        artificial intelligence lies in its ability to collaborate with humans
-        in meaningful, transparent, and socially responsible ways.
-      </p>
-      <p>
-        Our research spans foundational work in affective computing and
-        intelligent systems, as well as applied research in healthcare
-        informatics, where we design and deploy intelligent technologies to
-        support caregivers, patients, and healthcare professionals in real-world
-        contexts.
-      </p>
-    </div>
-  </section>
+        <section class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-8">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+                    About ACISLAB
+                </h2>
+                <div class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify">
+                    <p>
+                        <span class="font-semibold text-slate-900 dark:text-white">ACISLAB</span>
+                        is a research laboratory based at the Instituto Tecnológico de Sonora (ITSON),
+                        Mexico, dedicated to the study and development of human-centered artificial
+                        intelligence.
+                    </p>
+                    <p>
+                        Our mission is to design intelligent systems that not only optimize
+                        tasks, but are capable of understanding, modeling, and responding to the
+                        human cognitive and emotional condition. We believe that the future of
+                        artificial intelligence lies in its ability to collaborate with humans
+                        in meaningful, transparent, and socially responsible ways.
+                    </p>
+                    <p>
+                        Our research spans foundational work in affective computing and
+                        intelligent systems, as well as applied research in healthcare
+                        informatics, where we design and deploy intelligent technologies to
+                        support caregivers, patients, and healthcare professionals in real-world
+                        contexts.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
-      Our Research Areas
-    </h2>
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+                Our Research Areas
+            </h2>
 
-    <div class="grid gap-6 md:grid-cols-2">
-      <AreaCard
-        title="Healthcare-Centered Systems"
-        description="Design and application of intelligent systems to support healthcare processes, caregivers, and patients."
-        href="/research/healthcare_centered_systems"
-        icon={healthcareImg.src}
-      />
+            <div class="grid gap-6 md:grid-cols-2">
+                <AreaCard
+                        title="Healthcare-Centered Systems"
+                        description="Design and application of intelligent systems to support healthcare processes, caregivers, and patients."
+                        href="/research/healthcare_centered_systems"
+                        icon={healthcareImg.src}
+                />
 
-      <AreaCard
-        title="Affective Computing & Intelligent Systems"
-        description="Systems capable of understanding, modeling, and responding to human cognitive and emotional conditions."
-        href="/research/affective_computing"
-        icon={affectiveImg.src}
-      />
-    </div>
-  </section>
+                <AreaCard
+                        title="Affective Computing & Intelligent Systems"
+                        description="Systems capable of understanding, modeling, and responding to human cognitive and emotional conditions."
+                        href="/research/affective_computing"
+                        icon={affectiveImg.src}
+                />
+            </div>
+        </section>
 
-  <section class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-12">
-    <div class="flex items-center justify-between mb-2 px-1">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Projects</h2>
-      <a href="/projects" class="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center gap-1 group">
-        View all
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-        </svg>
-      </a>
-    </div>
+        <section class="mb-12 border-b border-slate-200 dark:border-slate-800 pb-12">
+            <div class="flex items-center justify-between mb-2 px-1">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Projects</h2>
+                <a href="/projects"
+                   class="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center gap-1 group">
+                    View all
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </div>
 
-    <ProjectCarousel projects={projectsForCarousel} />
-    
-  </section>
+            <ProjectCarousel projects={projectsForCarousel}/>
 
-  <section
-    class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 mb-8"
-  >
-    <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
-      Our Research Vision
-    </h2>
-    <div
-      class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
-    >
-      <p>
+        </section>
+
+        <section
+                class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800 mb-8"
+        >
+            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+                Our Research Vision
+            </h2>
+            <div
+                    class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
+            >
+                <p>
         <span class="font-semibold text-slate-900 dark:text-white">ACISLAB</span
         > operates at the intersection of Affective Computing, Intelligent Systems,
-        Software Engineering, and Human-Computer Interaction.
-      </p>
-      <p>
-        Unlike purely data-driven or “black-box” AI approaches, our research
-        emphasizes formal, explainable, and methodologically grounded models of
-        cognition and emotion.
-      </p>
-      <p>
-        We develop Computational Models of Emotion, study how emotional
-        processes influence cognition and decision-making, and design
-        architectures for cognitive and affective agents capable of interacting
-        naturally with users.
-      </p>
-    </div>
-  </section>
+                    Software Engineering, and Human-Computer Interaction.
+                </p>
+                <p>
+                    Unlike purely data-driven or “black-box” AI approaches, our research
+                    emphasizes formal, explainable, and methodologically grounded models of
+                    cognition and emotion.
+                </p>
+                <p>
+                    We develop Computational Models of Emotion, study how emotional
+                    processes influence cognition and decision-making, and design
+                    architectures for cognitive and affective agents capable of interacting
+                    naturally with users.
+                </p>
+            </div>
+        </section>
 
-  <section
-    class="mt-8 mb-12 border-t border-slate-200 dark:border-slate-800 pt-8"
-  >
-    <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
-      Culture and Collaboration
-    </h2>
-    <div
-      class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
-    >
-      <p>
-        Under the direction of <span
-          class="font-semibold text-slate-900 dark:text-white"
-          >Dr. Luis-Felipe Rodríguez</span
-        >, the laboratory promotes a culture of close collaboration. We focus on
-        training the next generation of researchers.
-      </p>
-    </div>
-
-    <div class="mt-8">
-      <a
-        href="/about"
-        class="inline-flex items-center gap-2 px-5 py-2 border border-slate-300 dark:border-slate-600 hover:border-sky-500 dark:hover:border-sky-400 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg transition-colors bg-transparent"
-      >
-        <span>Meet Our Team</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+        <section
+                class="mt-8 mb-12 border-t border-slate-200 dark:border-slate-800 pt-8"
         >
-      </a>
+            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
+                Culture and Collaboration
+            </h2>
+            <div
+                    class="text-lg text-slate-600 dark:text-slate-300 space-y-4 leading-relaxed text-justify"
+            >
+                <p>
+                    Under the direction of <span
+                        class="font-semibold text-slate-900 dark:text-white"
+                >Dr. Luis-Felipe Rodríguez</span
+                >, the laboratory promotes a culture of close collaboration. We focus on
+                    training the next generation of researchers.
+                </p>
+            </div>
+
+            <div class="mt-8">
+                <a
+                        href="/about"
+                        class="inline-flex items-center gap-2 px-5 py-2 border border-slate-300 dark:border-slate-600 hover:border-sky-500 dark:hover:border-sky-400 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg transition-colors bg-transparent"
+                >
+                    <span>Meet Our Team</span>
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                    >
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg
+                    >
+                </a>
+            </div>
+        </section>
     </div>
-  </section>
-</ThreeColumnLayout>
+</BaseLayout>
