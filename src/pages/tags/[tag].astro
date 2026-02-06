@@ -66,7 +66,7 @@ const totalItems = sortedPosts.length + sortedProjects.length;
       Showing {totalItems} item{totalItems !== 1 ? 's' : ''} tagged with "{displayTag}"
     </p>
     <div class="mt-4">
-      <a href={getLink('/tags')} class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+      <a href={getLink('/tags')} class="text-sky-600 dark:text-sky-400 hover:underline flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -112,7 +112,7 @@ const totalItems = sortedPosts.length + sortedProjects.length;
             )}
             <div class="p-6">
               <h3 class="text-xl font-bold mb-2">
-                <a href={getLink(`/projects/${project.slug}`)} class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <a href={getLink(`/projects/${project.slug}`)} class="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
                   {project.data.title}
                 </a>
               </h3>

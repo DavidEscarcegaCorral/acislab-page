@@ -38,7 +38,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
             href={finalHref} 
             target={target} 
             rel={rel}
-            class="hover:text-indigo-600 dark:hover:text-indigo-400"
+            class="hover:text-sky-600 dark:hover:text-sky-400"
         >
           {title}
           {externalUrl && <span class="text-xs ml-1 text-slate-400">↗</span>}
@@ -50,7 +50,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
           {tags.map(tag => (
             <a 
               href={getLink(`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`)}
-              class="text-xs text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+              class="text-xs text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400"
             >
               #{tag}
             </a>
@@ -71,7 +71,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
           href={finalHref}
           target={target}
           rel={rel}
-          class="text-indigo-600 dark:text-indigo-400 hover:underline"
+          class="text-sky-600 dark:text-sky-400 hover:underline"
         >
           {externalUrl ? 'Read Publication →' : 'Read more →'}
         </a>

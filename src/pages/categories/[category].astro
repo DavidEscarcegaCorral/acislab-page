@@ -63,7 +63,7 @@ const sortedSubjects = Object.entries(postsBySubject)
       Showing {sortedPosts.length} post{sortedPosts.length !== 1 ? 's' : ''} in the "{displayCategory}" category
     </p>
     <div class="mt-2">
-      <a href={getLink('/categories')} class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+      <a href={getLink('/categories')} class="text-sky-600 dark:text-sky-400 hover:underline flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
@@ -89,7 +89,7 @@ const sortedSubjects = Object.entries(postsBySubject)
                 </span>
                 <a 
                   href={getLink(`/blog/${post.slug}`)}
-                  class="hover:text-indigo-600 dark:hover:text-indigo-400 line-clamp-1 ml-2"
+                  class="hover:text-sky-600 dark:hover:text-sky-400 line-clamp-1 ml-2"
                   title={post.data.title}
                 >
                   {post.data.title}
@@ -100,7 +100,7 @@ const sortedSubjects = Object.entries(postsBySubject)
               <li class="mt-2">
                 <a 
                   href={getLink(`/categories/${category.toLowerCase().replace(/\s+/g, '-')}/${name.toLowerCase().replace(/\s+/g, '-')}`)} 
-                  class="text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
+                  class="text-xs text-sky-600 dark:text-sky-400 hover:underline"
                 >
                   View all {posts.length} posts →
                 </a>
